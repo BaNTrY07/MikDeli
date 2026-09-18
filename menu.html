@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1e2328">
+    <title>Meniul nostru | MikDeli</title>
+
+    <link rel="stylesheet" href="menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="menu-topbar">
+        <div class="menu-topbar__content">
+            <a class="back-btn" href="index.html" aria-label="Înapoi la pagina principală">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                <span>Înapoi</span>
+            </a>
+
+            <a class="menu-logo" href="index.html">MikDeli</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="menu-hero" aria-labelledby="menu-title">
+            <p class="menu-kicker">Proaspăt pregătit în fiecare zi</p>
+            <h1 id="menu-title">Meniul nostru</h1>
+            <p class="menu-intro">Alege produsele preferate din patiserie, gustări, pizza și băuturi.</p>
+
+            <nav class="category-nav" aria-label="Categorii din meniu">
+                <a href="#patiserie">Patiserie</a>
+                <a href="#gustari">Gustări</a>
+                <a href="#pizza">Pizza</a>
+                <a href="#bauturi">Băuturi</a>
+            </nav>
+        </section>
+
+        <section class="menu-section" id="patiserie" aria-labelledby="patiserie-title">
+            <div class="section-heading">
+                <p class="menu-kicker">Dulce sau sărat</p>
+                <h2 id="patiserie-title">Patiserie</h2>
+            </div>
+
+            <div class="products-grid">
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Croissant cu unt" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Croissant cu unt</h3><span class="price">12 lei</span></div>
+                        <p>Fraged, copt proaspăt în fiecare dimineață.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80" alt="Croissant cu ciocolată" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Croissant cu ciocolată</h3><span class="price">14 lei</span></div>
+                        <p>Aluat pufos cu umplutură fină de ciocolată.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80" alt="Melc cu scorțișoară" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Melc cu scorțișoară</h3><span class="price">13 lei</span></div>
+                        <p>Gust aromat de scorțișoară și glazură delicată.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80" alt="Gogoși proaspete" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Gogoși</h3><span class="price">15 lei</span></div>
+                        <p>Pufoase, dulci și pregătite zilnic.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="menu-section" id="gustari" aria-labelledby="gustari-title">
+            <div class="section-heading">
+                <p class="menu-kicker">Pentru o pauză gustoasă</p>
+                <h2 id="gustari-title">Gustări și plăcinte</h2>
+            </div>
+
+            <div class="products-grid">
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80" alt="Plăcintă cu brânză" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Plăcintă cu brânză</h3><span class="price">18 lei</span></div>
+                        <p>Aluat crocant și umplutură sărată, cremoasă.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80" alt="Plăcintă cu cartofi" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Plăcintă cu cartofi</h3><span class="price">16 lei</span></div>
+                        <p>Rețetă simplă, caldă și sățioasă.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80" alt="Hot dog clasic" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Hot dog clasic</h3><span class="price">35 lei</span></div>
+                        <p>Chiflă proaspătă, crenvurșt și sosuri la alegere.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=900&q=80" alt="Focaccia cu rozmarin" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Focaccia cu rozmarin</h3><span class="price">28 lei</span></div>
+                        <p>Pufoasă, aromată și coaptă până devine aurie.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="menu-section" id="pizza" aria-labelledby="pizza-title">
+            <div class="section-heading">
+                <p class="menu-kicker">Aluat proaspăt, gust italian</p>
+                <h2 id="pizza-title">Pizza</h2>
+            </div>
+
+            <div class="products-grid">
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80" alt="Pizza Margherita" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Pizza Margherita</h3><span class="price">65 lei</span></div>
+                        <p>Sos de roșii, mozzarella și busuioc.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80" alt="Pizza Prosciutto e Funghi" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Prosciutto e Funghi</h3><span class="price">78 lei</span></div>
+                        <p>Șuncă, ciuperci, mozzarella și sos de roșii.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=900&q=80" alt="Pizza Quattro Formaggi" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Quattro Formaggi</h3><span class="price">82 lei</span></div>
+                        <p>Patru tipuri de brânză pe blat crocant.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80" alt="Pizza Casei" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Pizza Casei</h3><span class="price">85 lei</span></div>
+                        <p>Combinația MikDeli de ingrediente proaspete.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="menu-section" id="bauturi" aria-labelledby="bauturi-title">
+            <div class="section-heading">
+                <p class="menu-kicker">Pentru fiecare gust</p>
+                <h2 id="bauturi-title">Băuturi</h2>
+            </div>
+
+            <div class="products-grid">
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="Espresso" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Espresso</h3><span class="price">18 lei</span></div>
+                        <p>Scurt, aromat și intens.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=900&q=80" alt="Cappuccino" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Cappuccino</h3><span class="price">28 lei</span></div>
+                        <p>Espresso, lapte cald și spumă fină.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=900&q=80" alt="Fresh de portocale" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Fresh de portocale</h3><span class="price">35 lei</span></div>
+                        <p>Portocale proaspete, stoarse la comandă.</p>
+                    </div>
+                </article>
+
+                <article class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=900&q=80" alt="Limonadă" loading="lazy">
+                    <div class="menu-card__content">
+                        <div class="menu-card__topline"><h3>Limonadă</h3><span class="price">30 lei</span></div>
+                        <p>Răcoritoare, cu lămâie și mentă.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="menu-footer">
+        <p>MikDeli Bakery • Produse pregătite cu grijă</p>
+        <a href="index.html#contact">Contactează-ne</a>
+    </footer>
+
+</body>
+</html>
