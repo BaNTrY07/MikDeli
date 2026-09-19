@@ -1,183 +1,119 @@
-// Meniu mobil
+const siteHeader = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
-const primaryNavigation = document.querySelector('#primary-navigation');
+const nav = document.querySelector('#primary-navigation');
 
-function setMobileMenuState(isOpen){
-    if(!menuToggle || !primaryNavigation) return;
-
-    primaryNavigation.classList.toggle('open', isOpen);
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    menuToggle.setAttribute(
-        'aria-label',
-        isOpen ? 'Închide meniul de navigare' : 'Deschide meniul de navigare'
-    );
-
-    const icon = menuToggle.querySelector('i');
-
-    if(icon){
-        icon.classList.toggle('fa-bars', !isOpen);
-        icon.classList.toggle('fa-xmark', isOpen);
-    }
+function setMobileMenu(open){
+    if(!menuToggle || !nav) return;
+    nav.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Închide meniul' : 'Deschide meniul');
 }
 
-if(menuToggle && primaryNavigation){
-    menuToggle.addEventListener('click', () => {
-        setMobileMenuState(!primaryNavigation.classList.contains('open'));
+if(menuToggle && nav){
+    menuToggle.addEventListener('click', () => setMobileMenu(!nav.classList.contains('open')));
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+    document.addEventListener('keydown', event => {
+        if(event.key === 'Escape') setMobileMenu(false);
     });
+    document.addEventListener('click', event => {
+        if(nav.classList.contains('open') && !nav.contains(event.target) && !menuToggle.contains(event.target)) setMobileMenu(false);
+    });
+}
 
-    primaryNavigation.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if(window.innerWidth <= 768){
-                setMobileMenuState(false);
+function updateHeader(){
+    siteHeader?.classList.toggle('scrolled', window.scrollY > 12);
+}
+updateHeader();
+window.addEventListener('scroll', updateHeader, {passive:true});
+
+const reveals = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
             }
         });
-    });
-
-    document.addEventListener('keydown', event => {
-        if(event.key === 'Escape'){
-            setMobileMenuState(false);
-        }
-    });
-
-    document.addEventListener('click', event => {
-        const clickedOutsideMenu = !primaryNavigation.contains(event.target);
-        const clickedOutsideToggle = !menuToggle.contains(event.target);
-
-        if(primaryNavigation.classList.contains('open') && clickedOutsideMenu && clickedOutsideToggle){
-            setMobileMenuState(false);
-        }
-    });
-
-    window.addEventListener('resize', () => {
-        if(window.innerWidth > 768){
-            setMobileMenuState(false);
-        }
-    });
+    }, {threshold:.12});
+    reveals.forEach(item => observer.observe(item));
+}else{
+    reveals.forEach(item => item.classList.add('is-visible'));
 }
 
-// Scroll lin pentru toate linkurile din navbar
-
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-
-        const target = this.getAttribute('href');
-
-        if(target.startsWith('#')){
-            e.preventDefault();
-
-            document.querySelector(target).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+const pageSections = [...document.querySelectorAll('main section[id]')];
+const pageLinks = [...document.querySelectorAll('#primary-navigation a[href^="#"]')];
+function setActiveMainLink(){
+    if(!pageSections.length) return;
+    const y = window.scrollY + 140;
+    let current = pageSections[0].id;
+    pageSections.forEach(section => {
+        if(section.offsetTop <= y) current = section.id;
     });
-});
-
-
-// Buton Contactează-ne
-
-const contactBtn = document.querySelector('.btn');
-
-contactBtn.addEventListener('click', function(e){
-    e.preventDefault();
-
-    document.querySelector('#contact').scrollIntoView({
-        behavior:'smooth'
-    });
-});
-
-
-// Evidențiere meniu activ
-
-window.addEventListener('scroll', () => {
-
-    const sections = document.querySelectorAll('section');
-
-    const navLinks = document.querySelectorAll('nav a');
-
-    let current = '';
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 150;
-
-        if(window.scrollY >= sectionTop){
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove('active');
-
-        if(link.getAttribute('href') === '#' + current){
-            link.classList.add('active');
-        }
-    });
-});
-
-const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-
-    });
-
-});
-
-document.querySelectorAll("section").forEach(section => {
-
-    section.classList.add("hidden");
-
-    observer.observe(section);
-
-});
+    pageLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+}
+setActiveMainLink();
+window.addEventListener('scroll', setActiveMainLink, {passive:true});
 
 function updateStatus(){
-
-    const status = document.getElementById("status");
+    const status = document.querySelector('#status');
+    const card = document.querySelector('#status-card');
+    if(!status) return;
 
     const now = new Date();
-    const hour = now.getHours();
+    const day = now.getDay();
+    const minutes = now.getHours() * 60 + now.getMinutes();
+    let open = false;
 
-    // Program:
-    // L-V: 08:00 - 20:00
-    // Sâmbătă: 09:00 - 18:00
-    // Duminică: închis
+    if(day >= 1 && day <= 5) open = minutes >= 480 && minutes < 1200;
+    if(day === 6) open = minutes >= 540 && minutes < 1080;
 
-    const day = now.getDay(); // 0 = Duminică, 6 = Sâmbătă
+    status.textContent = open ? 'Deschis acum' : 'Închis acum';
+    card?.classList.toggle('closed', !open);
+}
+updateStatus();
+setInterval(updateStatus, 60000);
 
-    let isOpen = false;
+const menuSearch = document.querySelector('#menu-search-input');
+const menuCards = [...document.querySelectorAll('.menu-card[data-search]')];
+const menuSections = [...document.querySelectorAll('.menu-section')];
+const noResults = document.querySelector('#no-results');
 
-    if(day >= 1 && day <= 5){
-        // Luni - Vineri
-        isOpen = hour >= 8 && hour < 20;
-    }
-    else if(day === 6){
-        // Sâmbătă
-        isOpen = hour >= 9 && hour < 18;
-    }
-    else{
-        // Duminică
-        isOpen = false;
-    }
-
-    if(isOpen){
-        status.textContent = "🟢 Deschis acum";
-        status.classList.add("open");
-        status.classList.remove("closed");
-    }
-    else{
-        status.textContent = "🔴 Închis acum";
-        status.classList.add("closed");
-        status.classList.remove("open");
-    }
+function normalizeText(value){
+    return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-// rulează imediat
-updateStatus();
+function filterMenu(){
+    if(!menuSearch) return;
+    const query = normalizeText(menuSearch.value.trim());
+    let visibleCount = 0;
 
-// update la fiecare minut
-setInterval(updateStatus, 60000);
+    menuCards.forEach(card => {
+        const haystack = normalizeText(`${card.dataset.search || ''} ${card.textContent}`);
+        const visible = !query || haystack.includes(query);
+        card.classList.toggle('is-hidden', !visible);
+        if(visible) visibleCount++;
+    });
+
+    menuSections.forEach(section => {
+        const hasVisibleCards = [...section.querySelectorAll('.menu-card')].some(card => !card.classList.contains('is-hidden'));
+        section.hidden = query.length > 0 && !hasVisibleCards;
+    });
+
+    if(noResults) noResults.hidden = visibleCount !== 0;
+}
+
+menuSearch?.addEventListener('input', filterMenu);
+
+const categoryLinks = [...document.querySelectorAll('.category-nav a[href^="#"]')];
+function updateCategoryLink(){
+    if(!menuSections.length || !categoryLinks.length || menuSearch?.value.trim()) return;
+    const y = window.scrollY + 180;
+    let current = menuSections[0]?.id || '';
+    menuSections.forEach(section => {
+        if(section.offsetTop <= y) current = section.id;
+    });
+    categoryLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+}
+updateCategoryLink();
+window.addEventListener('scroll', updateCategoryLink, {passive:true});

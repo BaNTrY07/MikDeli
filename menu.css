@@ -1,322 +1,621 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+/*
+  ==================================================
+  MIKDELI — СТИЛИ СТРАНИЦЫ МЕНЮ
+
+  Здесь меняется только внешний вид menu.html.
+  Названия товаров, цены и описания меняются
+  в menu.html, а не в этом файле.
+  ==================================================
+*/
+
+/* ==================================================
+   1. ОСНОВНЫЕ НАСТРОЙКИ
+   ================================================== */
+:root {
+    /* Цвета */
+    --bg: #121814;
+    --surface: #1b241e;
+    --surface-2: #243128;
+    --cream: #f7f1e3;
+    --muted: #c4bcad;
+    --terracotta: #c7473b;
+    --sage: #6fa27b;
+    --line: rgba(247, 241, 227, 0.12);
+    --line-strong: rgba(247, 241, 227, 0.2);
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+
+    /* Размеры */
+    --container-width: 1160px;
+    --desktop-gutter: 44px;
+    --menu-header-height: 72px;
+    --menu-scroll-offset: 145px;
+    --radius-button: 10px;
 }
 
-html{
-    scroll-behavior:smooth;
-    scroll-padding-top:92px;
+/* ==================================================
+   2. БАЗОВЫЕ ПРАВИЛА
+   ================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-body{
-    min-width:320px;
-    background:#1e2328;
-    color:#fff;
-    overflow-x:hidden;
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--menu-scroll-offset);
 }
 
-img{
-    display:block;
-    max-width:100%;
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: "Manrope", sans-serif;
 }
 
-a{
-    color:#f6b93b;
-    text-decoration:none;
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-a:focus-visible{
-    outline:2px solid #f6b93b;
-    outline-offset:4px;
+img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
 }
 
-/* Bara de sus */
-.menu-topbar{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:#1e2328;
-    border-bottom:1px solid rgba(255,255,255,.1);
+input {
+    font: inherit;
+}
+/* ==================================================
+   3. ШАПКА СТРАНИЦЫ МЕНЮ
+   ================================================== */
+.menu-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--line);
+    background: rgba(18, 24, 20, 0.94);
+    backdrop-filter: blur(14px);
 }
 
-.menu-topbar__content{
-    width:min(1120px, calc(100% - 40px));
-    min-height:74px;
-    margin:0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
+.menu-header-inner {
+    display: flex;
+    width: min(var(--container-width), calc(100% - var(--desktop-gutter)));
+    min-height: var(--menu-header-height);
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin: auto;
 }
 
-.back-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:9px;
-    min-height:44px;
-    padding:10px 16px;
-    border-radius:30px;
-    background:#2a2f35;
-    color:#f6b93b;
-    font-weight:600;
-    transition:.3s ease;
+.back-link,
+.contact-link {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    gap: 8px;
+    padding: 0 13px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-button);
+    font-size: 11px;
+    font-weight: 700;
+    transition: 0.2s ease;
 }
 
-.back-btn:hover,
-.back-btn:focus-visible{
-    background:#343a42;
-    transform:translateX(-3px);
+.back-link:hover,
+.contact-link:hover {
+    border-color: var(--line-strong);
+    background: var(--surface);
 }
 
-.menu-logo{
-    color:#f6b93b;
-    font-size:28px;
-    font-weight:700;
+.menu-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Titlu */
-.menu-hero{
-    max-width:860px;
-    margin:0 auto;
-    padding:72px 20px 54px;
-    text-align:center;
+.menu-socials {
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
-.menu-kicker{
-    color:#f6b93b;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing:.08em;
-    text-transform:uppercase;
+.menu-socials a {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-button);
+    color: var(--cream);
+    font-size: 13px;
+    transition: 0.2s ease;
 }
 
-.menu-hero h1{
-    margin-top:10px;
-    color:#f6b93b;
-    font-size:clamp(34px, 6vw, 52px);
-    line-height:1.15;
+.menu-socials a:hover {
+    border-color: var(--terracotta);
+    background: var(--terracotta);
+    color: #fff8ec;
+    transform: translateY(-2px);
 }
 
-.menu-intro{
-    max-width:620px;
-    margin:16px auto 0;
-    color:#ccc;
-    line-height:1.75;
+.menu-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: "Newsreader", serif;
+    font-size: 20px;
 }
 
-.category-nav{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
-    margin-top:30px;
+.menu-brand span {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border-radius: 11px;
+    background: var(--terracotta);
+    color: #211710;
+    font-weight: 700;
 }
 
-.category-nav a{
-    min-height:42px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:8px 15px;
-    border:1px solid rgba(246,185,59,.4);
-    border-radius:24px;
-    color:#f6b93b;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s ease;
+/* Максимальная ширина контента страницы меню */
+main {
+    width: min(var(--container-width), calc(100% - var(--desktop-gutter)));
+    margin: auto;
+}
+/* ==================================================
+   4. ПЕРВЫЙ ЭКРАН И ПОИСК
+   ================================================== */
+.menu-hero {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 46px 0 32px;
+}
+
+.overline {
+    color: var(--sage);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.menu-hero h1,
+.section-heading h2 {
+    font-family: "Newsreader", serif;
+    letter-spacing: -0.035em;
+}
+
+/* Размер заголовка «Meniul nostru» */
+.menu-hero h1 {
+    margin: 10px 0 15px;
+    font-size: clamp(48px, 7vw, 82px);
+    line-height: 0.95;
+}
+
+.menu-hero-copy > p:nth-of-type(2) {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.72;
+}
+
+/* Поле поиска по товарам */
+.menu-search {
+    display: flex;
+    max-width: 480px;
+    min-height: 48px;
+    align-items: center;
+    gap: 11px;
+    margin-top: 24px;
+    padding: 0 15px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--surface);
+}
+
+.menu-search i {
+    color: var(--terracotta);
+    font-size: 13px;
+}
+
+.menu-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--cream);
+    font-size: 13px;
+}
+
+.menu-search input::placeholder {
+    color: #aaa194;
+}
+
+/* Главное фото страницы меню */
+.menu-hero-image {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+    border-radius: 24px 24px 70px 24px;
+}
+
+.menu-hero-image img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-hero-image span {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    padding: 9px 11px;
+    border-radius: 9px;
+    background: #f7f1e3;
+    color: #182019;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Липкая навигация по категориям */
+.category-nav {
+    position: sticky;
+    top: var(--menu-header-height);
+    z-index: 30;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin: 0 -8px 12px;
+    padding: 8px;
+    background: rgba(18, 24, 20, 0.96);
+    backdrop-filter: blur(12px);
+}
+
+.category-nav a {
+    display: grid;
+    min-height: 46px;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-button);
+    background: var(--surface);
+    color: #e3dccf;
+    font-size: 11px;
+    font-weight: 700;
+    transition: 0.2s ease;
 }
 
 .category-nav a:hover,
-.category-nav a:focus-visible{
-    background:#f6b93b;
-    color:#1e2328;
-    transform:translateY(-2px);
+.category-nav a.active {
+    border-color: var(--terracotta);
+    background: var(--terracotta);
+    color: #fff8ec;
 }
 
-/* Categorii */
-.menu-section{
-    width:min(1120px, calc(100% - 40px));
-    margin:0 auto;
-    padding:58px 0;
-    scroll-margin-top:92px;
+/* Сообщение, которое появляется, если поиск ничего не нашёл */
+.no-results {
+    margin: 24px 0;
+    padding: 18px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+/* ==================================================
+   5. КАТЕГОРИИ И КАРТОЧКИ ТОВАРОВ
+   ================================================== */
+/* Отступ при переходе к категории через верхнее меню */
+.menu-section {
+    padding: 56px 0 18px;
+    scroll-margin-top: var(--menu-scroll-offset);
 }
 
-.menu-section + .menu-section{
-    border-top:1px solid rgba(255,255,255,.1);
+.menu-section + .menu-section {
+    border-top: 1px solid var(--line);
 }
 
-.section-heading{
-    margin-bottom:30px;
-    text-align:center;
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    margin-bottom: 22px;
 }
 
-.section-heading h2{
-    margin-top:7px;
-    color:#f6b93b;
-    font-size:clamp(28px, 4vw, 36px);
+.section-heading > span {
+    color: var(--terracotta);
+    font-family: "Newsreader", serif;
+    font-size: 38px;
+    line-height: 0.9;
 }
 
-.section-heading h2::after{
-    content:"";
-    display:block;
-    width:70px;
-    height:3px;
-    margin:12px auto 0;
-    border-radius:5px;
-    background:#f6b93b;
+.section-heading p {
+    margin-bottom: 4px;
+    color: var(--sage);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
 }
 
-.products-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
-    gap:24px;
+.section-heading h2 {
+    font-size: clamp(31px, 4vw, 44px);
+    line-height: 1;
 }
 
-.menu-card{
-    overflow:hidden;
-    border-radius:15px;
-    background:#2a2f35;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    transition:.3s;
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
 }
 
-.menu-card:hover{
-    box-shadow:0 18px 40px rgba(0,0,0,.4);
-    transform:translateY(-5px);
+.menu-card {
+    display: grid;
+    min-height: 176px;
+    grid-template-columns: 175px 1fr;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    transition: 0.22s ease;
 }
 
-.menu-card img{
-    width:100%;
-    height:190px;
-    object-fit:cover;
+.menu-card:hover {
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+    transform: translateY(-3px);
 }
 
-.menu-card__content{
-    padding:19px;
+/* Класс добавляет JavaScript, когда товар не подходит поиску */
+.menu-card.is-hidden {
+    display: none;
 }
 
-.menu-card__topline{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:12px;
+.menu-card img {
+    height: 100%;
+    object-fit: cover;
 }
 
-.menu-card h3{
-    color:#fff;
-    font-size:17px;
-    line-height:1.4;
+.menu-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 19px;
 }
 
-.menu-card p{
-    margin-top:9px;
-    color:#ccc;
-    font-size:13px;
-    line-height:1.65;
+.menu-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
 }
 
-.price{
-    flex:0 0 auto;
-    color:#f6b93b;
-    font-size:14px;
-    font-weight:700;
-    white-space:nowrap;
+.menu-card h3 {
+    font-family: "Newsreader", serif;
+    font-size: 21px;
+    line-height: 1.12;
 }
 
-/* Subsol */
-.menu-footer{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px 18px;
-    margin-top:26px;
-    padding:36px 20px;
-    background:#171b20;
-    color:#ccc;
-    font-size:14px;
-    text-align:center;
+.menu-card strong {
+    flex: 0 0 auto;
+    color: var(--terracotta);
+    font-size: 11px;
 }
 
-.menu-footer a{
-    font-weight:600;
+.menu-card p {
+    margin-top: 9px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
 }
 
-.menu-footer a:hover,
-.menu-footer a:focus-visible{
-    color:#fff;
+/* ==================================================
+   6. ПОДВАЛ СТРАНИЦЫ МЕНЮ
+   ================================================== */
+.menu-footer {
+    display: flex;
+    width: min(var(--container-width), calc(100% - var(--desktop-gutter)));
+    align-items: center;
+    gap: 18px;
+    margin: 48px auto 0;
+    padding: 30px 0 38px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 10px;
 }
 
-@media (max-width:768px){
-    .menu-topbar__content,
-    .menu-section{
-        width:calc(100% - 32px);
+.menu-footer strong {
+    color: var(--cream);
+}
+
+.menu-footer a {
+    margin-left: auto;
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+.menu-footer a i {
+    margin-left: 6px;
+}
+/* ==================================================
+   7. ПЛАНШЕТЫ — до 900px
+   ================================================== */
+@media (max-width: 900px) {
+    .menu-hero {
+        grid-template-columns: 1fr;
     }
 
-    .menu-hero{
-        padding:54px 16px 38px;
+    .menu-hero-image {
+        height: 310px;
     }
 
-    .products-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:16px;
+    .products-grid {
+        grid-template-columns: 1fr;
     }
 
-    .menu-card img{
-        height:165px;
-    }
-
-    .menu-card__content{
-        padding:16px;
-    }
-
-    .menu-card__topline{
-        flex-direction:column;
-        gap:6px;
+    .menu-card {
+        grid-template-columns: 210px 1fr;
     }
 }
 
-@media (max-width:520px){
-    .menu-topbar__content{
-        min-height:66px;
+/* ==================================================
+   8. ТЕЛЕФОНЫ — до 640px
+   Не удаляйте scroll-padding и top у category-nav:
+   они отвечают за правильный переход к категориям.
+   ================================================== */
+@media (max-width: 640px) {
+    html {
+        scroll-padding-top: 176px;
     }
 
-    .back-btn{
-        padding:9px 13px;
-        font-size:14px;
+    .menu-header-inner,
+    main,
+    .menu-footer {
+        width: calc(100% - 28px);
     }
 
-    .menu-logo{
-        font-size:24px;
+    .menu-header-inner {
+        min-height: 66px;
     }
 
-    .category-nav{
-        display:grid;
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:8px;
+    .contact-link {
+        display: none;
     }
 
-    .category-nav a{
-        padding:8px;
-        font-size:13px;
+    .menu-header-actions {
+        gap: 5px;
     }
 
-    .menu-section{
-        padding:46px 0;
+    .menu-socials {
+        gap: 5px;
     }
 
-    .products-grid{
-        grid-template-columns:1fr;
+    .menu-socials a {
+        width: 38px;
+        height: 38px;
     }
 
-    .menu-card img{
-        height:205px;
+    .menu-hero {
+        gap: 24px;
+        padding-top: 32px;
     }
 
-    .menu-card__topline{
-        flex-direction:row;
-        align-items:center;
+    .menu-hero h1 {
+        font-size: clamp(46px, 14vw, 62px);
     }
+
+    .menu-hero-image {
+        height: 245px;
+        border-radius: 18px 18px 52px 18px;
+    }
+
+    .category-nav {
+        top: 66px;
+        grid-template-columns: repeat(2, 1fr);
+        margin-inline: -4px;
+        padding: 7px 4px;
+    }
+
+    .category-nav a {
+        min-height: 42px;
+    }
+
+    .menu-section {
+        padding-top: 45px;
+        scroll-margin-top: 176px;
+    }
+
+    .section-heading > span {
+        font-size: 32px;
+    }
+
+    .menu-card {
+        min-height: 145px;
+        grid-template-columns: 118px 1fr;
+    }
+
+    .menu-card-content {
+        padding: 14px;
+    }
+
+    .menu-card h3 {
+        font-size: 18px;
+    }
+
+    .menu-card-top {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .menu-card p {
+        font-size: 10px;
+    }
+
+    .menu-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-footer a {
+        margin-left: 0;
+    }
+}
+
+/* ==================================================
+   9. УЗКИЕ ТЕЛЕФОНЫ — до 420px
+   ================================================== */
+@media (max-width: 420px) {
+    .menu-brand strong {
+        font-size: 18px;
+    }
+
+    .back-link span {
+        display: none;
+    }
+
+    .back-link {
+        display: inline-flex;
+        width: 40px;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .menu-card {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-card img {
+        height: 175px;
+    }
+
+    .menu-card-top {
+        flex-direction: row;
+    }
+
+    .menu-card h3 {
+        font-size: 20px;
+    }
+}
+
+/* Декоративная полоска шапки: зелёный, кремовый, красный */
+.menu-header::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    content: "";
+    pointer-events: none;
+    opacity: 0.72;
+    background: linear-gradient(
+        90deg,
+        #1f6b4f 0 33.33%,
+        #f7f1e3 33.33% 66.66%,
+        #c7473b 66.66% 100%
+    );
 }
